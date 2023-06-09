@@ -4,7 +4,7 @@ import BottomLine from '../components/BottomLine/index'
 import '../App.css'
 import '../components/PrimaryBtn/PrimaryBtn.css'
 
-const Todo = () => {
+const Todo = ({name}) => {
     const [inputData , setinputData] = useState ('');
     const [items , setItems] = useState ([]);
 
@@ -16,12 +16,24 @@ const Todo = () => {
             setinputData('')
         }
     }
+
+
+    const deleteItem = (e, ind) =>{
+
+       const val = e.target['tabIndex'];
+        
+       setItems(items.filter((elem, index) => index !== val))
+        
+    }
+
+   
+    
   return (
     <div className="flex">
         <div className='flex bg-purple-500 w-full h-screen back'>
             <div className="block h-screen bg-gray-500 w-60 mobile">
                 <img src={icon} alt="icon" className='flex justify-center mx-auto w-52 h-32 icon'/>
-                    <h1 className='flex justify-center text-2xl font-bold text-white text'>Ganesh</h1><br />
+                    <h1 className='flex justify-center text-2xl font-bold text-white text'>{name}</h1><br />
                     <div className="cont">
                         <BottomLine/>
                     </div>
@@ -42,16 +54,15 @@ const Todo = () => {
                         <i className="fa-sharp fa-solid fa-plus icon1" title='Add Item'></i>
                     </button>
                 </div>
-                <div className="flex justify-center">
-
+                <div className="flex flex-col items-center gap-8 justify-center">
                 {
                     items.map((elem , ind) => {
                         return(
                             <>
-                                    <div className="flex mr-2 item col-span-1">
+                                    <div key={ind} className="flex mr-2 item col-span-1">
                                         <span className='p-2 text-white border w-80 mx-auto rounded mr-2'>{elem}</span>
-                                        <button className='primary-button1 block' onClick={onchange}>
-                                            <i className="fa-sharp fa-solid fa-trash icon1" title='Add Item'></i>
+                                        <button  className='primary-button1 block' onClick={(e , ind)=>{deleteItem(e , ind)}}>
+                                            <i tabIndex={ind} className="fa-sharp fa-solid fa-trash icon1" title='Add Item'></i>
                                         </button>
                                     </div>  
                             </>

@@ -1,14 +1,16 @@
 import './App.css';
 import Name from './pages/Name';
 import Todo from './pages/Todo'
+import { useState } from 'react';
 
-
-function App() {
+function App () {
+  
+  const [name, setName] = useState('')
   return (
-   <>
-    <Name/>
-    <Todo/>
-   </>
+  <>
+    <Name name={name} setName={setName}/>
+    <Todo name={name}/> 
+  </>
   );
 }
 

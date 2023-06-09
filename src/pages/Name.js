@@ -1,9 +1,9 @@
-import React , {useState} from 'react'
+import React from 'react'
 import logo from '../images/logo_02.png'
 import Bottoun from '../components/PrimaryBtn/index'
 
-const Name = () => {
-  const [nameData , setnameData] = useState('');
+const Name = ({setName , name}) => {
+  
   return (
     <div className='bg-blue-900 h-screen w-full'>
         <div className="flex justify-center">
@@ -17,8 +17,8 @@ const Name = () => {
               className="w-96 px-4 py-2 border rounded-lg mx-auto mt-20"
               type="text"
               placeholder='Enter Your Nick Name'
-              value={nameData}
-              onChange={(e) => setnameData(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
         </div>
         <div className="flex justify-center my-20 border-spacing-2">
